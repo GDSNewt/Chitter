@@ -4,7 +4,8 @@ class PeepsController < ApplicationController
   # GET /peeps
   # GET /peeps.json
   def index
-    @peeps = Peep.all
+    @peeps = Peep.all.order("created_at DESC")
+    @peep = Peep.new
   end
 
   # GET /peeps/1
@@ -28,7 +29,7 @@ class PeepsController < ApplicationController
 
     respond_to do |format|
       if @peep.save
-        format.html { redirect_to @peep, notice: 'Peep was successfully created.' }
+        format.html { redirect_to root_path, notice: 'Peep was successfully created.' }
         format.json { render :show, status: :created, location: @peep }
       else
         format.html { render :new }
