@@ -1,4 +1,5 @@
 class PeepsController < ApplicationController
+  before_action :authenticate_user!, only: [:create, :edit, :update, :destroy]
   before_action :set_peep, only: [:show, :edit, :update, :destroy]
 
   # GET /peeps
